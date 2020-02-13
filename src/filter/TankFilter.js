@@ -51,11 +51,6 @@ class TankFilter extends React.Component {
         const nameArray = [...new Set(this.state.tanks.map(item => item.name))];
         const ammunitionArray = [...new Set([].concat(...this.state.tanks.map(item => item.ammunition)))];
 
-        typeArray.unshift("");
-        countryArray.unshift("");
-        nameArray.unshift("");
-        ammunitionArray.unshift("");
-
         return (
             <div>
                 <TankFilterOptions

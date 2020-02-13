@@ -5,6 +5,7 @@ import TankFilter from "./filter/TankFilter";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import Toolbar from "@material-ui/core/Toolbar";
+import Container from "@material-ui/core/Container";
 
 class App extends React.Component {
     constructor(props) {
@@ -29,18 +30,29 @@ class App extends React.Component {
 
     render() {
         const {tanks, isLoading, error} = this.state;
-        if (error) return <p>{error}</p>;
-        if (isLoading) return <CircularProgress/>;
+
+        let content;
+        if (error) {
+            content = <p>{error}</p>;
+        } else if (isLoading) {
+            content = <CircularProgress/>;
+        } else {
+            content = <TankFilter tanks={tanks}/>;
+        }
+
         return (
             <div>
-                <AppBar>
+                <AppBar position="sticky">
                     <Toolbar>
                         <Typography variant="h6">
-                            Tanks
+                            Voiceworks Tanks Assignment
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <TankFilter tanks={tanks}/>
+                <Container>
+                    <Typography variant="h2">Tanks</Typography>
+                    {content}
+                </Container>
             </div>
         );
     }
